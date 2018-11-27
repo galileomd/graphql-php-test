@@ -2,8 +2,9 @@
 
 namespace App;
 
+use App\Type\AttributeType;
+use App\Type\ItemType;
 use App\Type\QueryType;
-use App\Type\UserType;
 use GraphQL\Type\Definition\Type;
 
 /**
@@ -15,30 +16,23 @@ use GraphQL\Type\Definition\Type;
  */
 class Types
 {
-    /**
-     * @var QueryType
-     */
     private static $query;
+    private static $item;
+    private static $attribute;
 
-    /**
-     * @var UserType
-     */
-    private static $user;
-
-    /**
-     * @return QueryType
-     */
     public static function query()
     {
         return self::$query ?: (self::$query = new QueryType());
     }
 
-    /**
-     * @return UserType
-     */
-    public static function user()
+    public static function item()
     {
-        return self::$user ?: (self::$user = new UserType());
+        return self::$item ?: (self::$item = new ItemType());
+    }
+
+    public static function attribute()
+    {
+        return self::$attribute ?: (self::$attribute = new AttributeType());
     }
 
     /**

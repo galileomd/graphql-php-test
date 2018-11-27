@@ -13,21 +13,21 @@ class QueryType extends ObjectType
         $config = [
             'fields' => function() {
                 return [
-                    'user' => [
-                        'type' => Types::user(),
+                    'item' => [
+                        'type' => Types::item(),
                         'description' => 'Возвращает пользователя по id',
                         'args' => [
                             'id' => Types::int()
                         ],
                         'resolve' => function ($root, $args) {
-                            return DB::selectOne("SELECT * from users WHERE id = {$args['id']}");
+                            return DB::selectOne("SELECT * from item");
                         }
                     ],
-                    'allUsers' => [
-                        'type' => Types::listOf(Types::user()),
+                    'attributes' => [
+                        'type' => Types::listOf(Types::attribute()),
                         'description' => 'Список пользователей',
                         'resolve' => function () {
-                            return DB::select('SELECT * from users');
+                            return DB::select('SELECT * from attribute');
                         }
                     ]
                 ];
